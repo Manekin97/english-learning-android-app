@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "993440955235",
+    "firebase_url": "https://english-learning-android-app.firebaseio.com",
+    "project_id": "english-learning-android-app",
+    "storage_bucket": "english-learning-android-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993440955235:android:d1c507912efa95bd",
+        "android_client_info": {
+          "package_name": "com.example.rafik.englishcourse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993440955235-jrc0olk33adliukvu9nbhhjpd5alkdtp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rafik.englishcourse",
+            "certificate_hash": "8e9b484a0f912819e1db4211348755b9189e9120"
+          }
+        },
+        {
+          "client_id": "993440955235-cqje350j9pgbdptq64o5vipicannk0d9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAid-OX31d7bFOM9pjV32-M3xQyzypDEbA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993440955235-cqje350j9pgbdptq64o5vipicannk0d9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
