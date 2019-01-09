@@ -18,6 +18,10 @@
         </activity>
 
         <service android:name=".ServerService" />
+
+        <activity android:name=".DifficultySelectionActivity" />
+        <activity android:name=".QuestionActivity" />
+        <activity android:name=".SummaryActivity"></activity>
     </application>
 
 </manifest>
