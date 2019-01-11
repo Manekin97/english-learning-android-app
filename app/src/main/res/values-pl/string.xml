@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EnglishCourse</string>
     <string name="test_btn">TEST</string>
-    <string name="hello">Hello!</string>
+    <string name="hello">Witaj!</string>
     <string name="quiz_btn">Quiz</string>
-    <string name="training_btn">TRAINING</string>
-    <string name="library_btn">Library</string>
-    <string name="easy_lvl_btn">EASY</string>
-    <string name="normal_lvl_btn">NORMAL</string>
-    <string name="hard_lvl_btn">HARD</string>
-    <string name="expert_lvl_btn">EXPERT</string>
-    <string name="difficulty_lvl">POZIOM TRUDNOŚCI</string>
+    <string name="training_btn">TRENING</string>
+    <string name="library_btn">SŁOWNIK</string>
+    <string name="easy_lvl_btn">Łatwy</string>
+    <string name="normal_lvl_btn">NORMALNY</string>
+    <string name="hard_lvl_btn">CIĘŻKI</string>
+    <string name="expert_lvl_btn">EKSPERT</string>
+    <string name="difficulty_lvl">LEVEL OF DIFFICULTY</string>
     <string name="text_question">TextView</string>
     <string name="first_answer">Button</string>
     <string name="second_answer">Button</string>
@@ -19,6 +20,6 @@
     <string name="summary_txt">TextView</string>
     <string name="text_view_score">TextView</string>
     <string name="change_lng_button">Button</string>
-    <string name="pl_eng_btn">Polish -> English</string>
-    <string name="eng_pl_btn">English -> Polish</string>
+    <string name="pl_eng_btn">Polski -> Angielski</string>
+    <string name="eng_pl_btn">Angielski -> Polski</string>
 </resources>

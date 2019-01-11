@@ -21,7 +21,8 @@
 
         <activity android:name=".DifficultySelectionActivity" />
         <activity android:name=".QuestionActivity" />
-        <activity android:name=".SummaryActivity"></activity>
+        <activity android:name=".SummaryActivity" />
+        <activity android:name=".language_selection_activity"></activity>
     </application>
 
 </manifest>
