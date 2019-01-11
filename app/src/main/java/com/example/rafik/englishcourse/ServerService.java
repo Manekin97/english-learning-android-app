@@ -6,9 +6,6 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,15 +13,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class ServerService extends Service {
-//    @androidx.annotation.Nullable
+
     private final IBinder mBinder = new ServerBinder();
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
     public class ServerBinder extends Binder {
         ServerService getService() {
-            // Return this instance of ServerService so clients can call public methods
             return ServerService.this;
         }
     }
@@ -37,38 +38,74 @@ public class ServerService extends Service {
     @Override
     public void onCreate(){
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("/Words/9EfEoK6HyJG0GC8ChWUW");
-
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-//                Post post = dataSnapshot.getValue(Post.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("TAG", "onCancelled", databaseError.toException());
-            }
-        };
-
-        myRef.addValueEventListener(postListener);
+        myRef = database.getReference("/Words");
     }
 
-    public void updateQuestion(){
-        // test firebase
-        myRef.child("czekolada").setValue("laptop");
+    public void updateQuestion(String key, String value){
+        myRef.child(key).setValue(value);
     }
 
-    public void GetQuestion(View view) {
+    public void getWords(Callback callback){
 
-        final TextView label = (TextView) view;
-
-        myRef.child("czekolada").addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String question = dataSnapshot.getValue(String.class);
-                label.setText("question");
+                HashMap<String, String> data = (HashMap<String, String>) dataSnapshot.getValue();
+                callback.callback(data);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("DBerror", databaseError.getMessage());
+            }
+        });
+    }
+
+    class Pair{
+        public String key;
+        public String value;
+
+        Pair(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    public void getQuestion(Callback callback) {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long wordCount = dataSnapshot.getChildrenCount();
+                ArrayList<Pair> words = new ArrayList<>();
+                int[] indexes = ThreadLocalRandom.current().ints(0, (int)wordCount).distinct().limit(4).toArray();
+
+                Iterable<DataSnapshot> data = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> it = data.iterator();
+
+                int i = 0;
+                while (it.hasNext()){
+                    DataSnapshot child = it.next();
+
+                    if (i == indexes[0]){
+                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                    }
+
+                    if (i == indexes[1]){
+                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                    }
+
+                    if (i == indexes[2]){
+                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                    }
+
+                    if (i == indexes[3]){
+                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                    }
+
+                    i++;
+                }
+
+                callback.onWordsReceived(words);
             }
 
             @Override
@@ -76,6 +113,34 @@ public class ServerService extends Service {
 
             }
         });
+
+
+
+
+
+        myRef.child("mysz").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("DBerror", databaseError.getMessage());
+            }
+        });
+    }
+
+    public void deleteWord(String word) {
+        myRef.child(word).removeValue();
+    }
+
+    public void addWord(String word, String translation){
+        myRef.child(word).setValue(translation);
+    }
+
+    public  void editTranslation(String word, String newTranslation){
+        myRef.child(word).setValue(newTranslation);
     }
 
 }

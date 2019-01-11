@@ -4,28 +4,55 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainMenuActivity extends AppCompatActivity {
+import java.util.HashMap;
 
-    ServerService serverService;
+public class MainMenuActivity extends AppCompatActivity {
+    private Button libraryButton;
+    private Button startTestButton;
+    private Button startTrainingButton;
+
+    QuizService quizService;
     boolean isBound = false;
+    final HashMap<String, String> dupa = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+
+        this.libraryButton = (Button) findViewById(R.id.library_base_button);
+        this.startTestButton = (Button) findViewById(R.id.test_btn);
+        this.startTrainingButton = (Button) findViewById(R.id.training_btn);
+
+        this.libraryButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DictionaryActivity.class);
+            startActivity(intent);
+        });
+
+        this.startTestButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, QuestionActivity.class);
+            quizService.setQuizMode(Mode.TEST);
+            startActivity(intent);
+        });
+
+        this.startTrainingButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, QuestionActivity.class);
+            quizService.setQuizMode(Mode.TRAINING);
+            startActivity(intent);
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Bind to ServerService
-        Intent intent = new Intent(this, ServerService.class);
+        Intent intent = new Intent(this, QuizService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -36,18 +63,14 @@ public class MainMenuActivity extends AppCompatActivity {
         isBound = false;
     }
 
-    /** Defines callbacks for service binding, passed to bindService() */
     private ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
-            // We've bound to ServerService, cast the IBinder and get ServerService instance
-            ServerService.ServerBinder binder = (ServerService.ServerBinder) service;
-            serverService = binder.getService();
+            QuizService.QuizServiceBinder binder = (QuizService.QuizServiceBinder) service;
+            quizService = binder.getService();
             isBound = true;
-
-
         }
 
         @Override

@@ -21,4 +21,5 @@
     <string name="change_lng_button">Button</string>
     <string name="pl_eng_btn">Polish -> English</string>
     <string name="eng_pl_btn">English -> Polish</string>
+    <string name="add_word_button">Dodaj</string>
 </resources>
