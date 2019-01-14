@@ -5,8 +5,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.icu.text.DecimalFormat;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,12 +18,14 @@ public class QuizService extends Service {
     private final IBinder mBinder = new QuizServiceBinder();
     private Difficulty difficulty;
     private Mode mode;
-    private int questionsCount;
     private ServerService db;
     private QuestionFactory factory;
     public HashMap<String, String> words = new HashMap<String, String>();
     private boolean isBound = false;
     private Question question;
+    public int currentQuestionIndex = 1;
+    private int answersCount = 0;
+    private int correctAnswersCount = 0;
 
     public class QuizServiceBinder extends Binder {
         QuizService getService() {
@@ -69,7 +73,38 @@ public class QuizService extends Service {
         question.onAnswerSelect(answer, this, callback);
     }
 
+    public void incrementCorrectAnswerCount() {
+        correctAnswersCount++;
+    }
+
+    public void incrementCurrentQuestionIndex() {
+        currentQuestionIndex++;
+    }
+
+    public void incrementAnswersCount() {
+        answersCount++;
+    }
+
+    public String getCorrectAnswersPercentageToString() {
+        if (this.answersCount == 0) {
+            return "0.00 %";
+        }
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format((double) (this.correctAnswersCount) / (double) (this.answersCount) * 100) + " %";
+    }
+
+    public String getQuestionProgressToString() {
+        return currentQuestionIndex + "/" + this.difficulty.QUESTIONS_COUNT;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
     public void setQuizMode(Mode mode) {
+        this.mode = mode;
+
         if (mode == Mode.TEST) {
             this.factory = new TestQuestionFactory();
         } else {
@@ -77,7 +112,7 @@ public class QuizService extends Service {
         }
     }
 
-    public void getNextQuestion(Callback callback){
+    public void getNextQuestion(Callback callback) {
         Question q = factory.getQuestion();
 
         db.getQuestion(new Callback() {
@@ -123,5 +158,23 @@ public class QuizService extends Service {
 
     public void editTranslation(String word, String newTranslation) {
         db.editTranslation(word, newTranslation);
+    }
+
+    public void onFinish(){
+        this.currentQuestionIndex = 1;
+        this.answersCount = 0;
+        this.correctAnswersCount = 0;
+    }
+
+    public int getDifficulty(){
+        return this.difficulty.QUESTIONS_COUNT;
+    }
+
+    public int getCurrentQuestionIndex(){
+        return currentQuestionIndex;
+    }
+
+    public Mode getMode(){
+        return this.mode;
     }
 }

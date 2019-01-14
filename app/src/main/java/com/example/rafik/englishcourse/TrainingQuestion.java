@@ -13,15 +13,16 @@ public class TrainingQuestion extends Question {
             @Override
             public void run() {
                 service.getNextQuestion(callback);
+                service.incrementCorrectAnswerCount();
+                service.incrementCurrentQuestionIndex();
+                service.incrementAnswersCount();
             }
-        }, 1500);
-
-        // set the score
+        }, 1450);
     }
 
     @Override
     protected void onWrongAnswer(Callback callback) {
+        service.incrementAnswersCount();
         callback.onWrongAnswer();
-        //  set the score
     }
 }

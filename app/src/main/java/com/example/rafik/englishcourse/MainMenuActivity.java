@@ -7,7 +7,6 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 
 import java.util.HashMap;
@@ -37,13 +36,13 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         this.startTestButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, QuestionActivity.class);
+            Intent intent = new Intent(this, DifficultySelectionActivity.class);
             quizService.setQuizMode(Mode.TEST);
             startActivity(intent);
         });
 
         this.startTrainingButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, QuestionActivity.class);
+            Intent intent = new Intent(this, DifficultySelectionActivity.class);
             quizService.setQuizMode(Mode.TRAINING);
             startActivity(intent);
         });
