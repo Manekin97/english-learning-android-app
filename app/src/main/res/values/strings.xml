@@ -27,4 +27,6 @@
     <string name="edit_button">Button</string>
     <string name="delete_word_button">TODO</string>
     <string name="edit_word_button">TODO</string>
+    <string name="loading_message">Loading...</string>
+    <string name="submit_button">Submit</string>
 </resources>

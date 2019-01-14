@@ -30,29 +30,30 @@ public class DifficultySelectionActivity extends AppCompatActivity {
         expertDiffButton = (Button) findViewById(R.id.expert_lvl_btn);
 
         beginnerDiffButton.setOnClickListener(v -> {
-                Intent intent = new Intent(this, QuestionActivity.class);
+                Intent intent = new Intent(this, LanguageSelectionActivity.class);
                 quizService.setDifficulty(Difficulty.BEGINNER);
                 startActivity(intent);
             }
         );
 
         elementaryDiffButton.setOnClickListener(v -> {
-                    Intent intent = new Intent(this, QuestionActivity.class);
+                    Intent intent = new Intent(this, LanguageSelectionActivity.class);
                     quizService.setDifficulty(Difficulty.ELEMENTARY);
                     startActivity(intent);
                 }
         );
 
         intermediateDiffButton.setOnClickListener(v -> {
-                    Intent intent = new Intent(this, QuestionActivity.class);
+                    Intent intent = new Intent(this, LanguageSelectionActivity.class);
                     quizService.setDifficulty(Difficulty.INTERMEDIATE);
                     startActivity(intent);
                 }
         );
 
         expertDiffButton.setOnClickListener(v -> {
-                    Intent intent = new Intent(this, QuestionActivity.class);
+                    Intent intent = new Intent(this, LanguageSelectionActivity.class);
                     quizService.setDifficulty(Difficulty.EXPERT);
+                    quizService.setQuestionType(QuestionType.OPEN);
                     startActivity(intent);
                 }
         );

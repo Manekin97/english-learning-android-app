@@ -23,5 +23,6 @@
     <string name="pl_eng_btn">Polski -> Angielski</string>
     <string name="eng_pl_btn">Angielski -> Polski</string>
     <string name="add_word_button">Dodaj</string>
-
+    <string name="loading_message">Ładowanie...</string>
+    <string name="submit_button">Zatwierdź</string>
 </resources>

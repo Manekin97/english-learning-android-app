@@ -1,6 +1,7 @@
 package com.example.rafik.englishcourse;
 
 import android.os.Handler;
+import android.util.Log;
 
 public class TrainingQuestion extends Question {
 

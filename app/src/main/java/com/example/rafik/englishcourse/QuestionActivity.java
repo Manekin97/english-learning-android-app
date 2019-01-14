@@ -47,7 +47,7 @@ public class QuestionActivity extends AppCompatActivity {
         this.chronometer = (Chronometer) findViewById(R.id.chronometer);
 
         this.answerAButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 >= quizService.getDifficulty()) {
+            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
                 this.chronometer.stop();
 
                 Intent intent = new Intent(this, SummaryActivity.class);
@@ -88,7 +88,7 @@ public class QuestionActivity extends AppCompatActivity {
                     } else {
                         questionsProgressTextView.setText(quizService.getQuestionProgressToString());
                         dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
+                                getString(R.string.loading_message), true);
                     }
                 }
 
@@ -111,14 +111,14 @@ public class QuestionActivity extends AppCompatActivity {
                         correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
                         questionsProgressTextView.setText(quizService.getQuestionProgressToString());
                         dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
+                                getString(R.string.loading_message), true);
                     }
                 }
             });
         });
 
         this.answerBButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 >= quizService.getDifficulty()) {
+            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
                 this.chronometer.stop();
 
                 Intent intent = new Intent(this, SummaryActivity.class);
@@ -160,7 +160,7 @@ public class QuestionActivity extends AppCompatActivity {
                     else {
                         questionsProgressTextView.setText(quizService.getQuestionProgressToString());
                         dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
+                                getString(R.string.loading_message), true);
                     }
                 }
 
@@ -183,14 +183,14 @@ public class QuestionActivity extends AppCompatActivity {
                         correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
                         questionsProgressTextView.setText(quizService.getQuestionProgressToString());
                         dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
+                                getString(R.string.loading_message), true);
                     }
                 }
             });
         });
 
         this.answerCButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 >= quizService.getDifficulty()) {
+            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
                 this.chronometer.stop();
 
                 Intent intent = new Intent(this, SummaryActivity.class);
@@ -262,7 +262,7 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         this.answerDButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 >= quizService.getDifficulty()) {
+            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
                 this.chronometer.stop();
 
                 Intent intent = new Intent(this, SummaryActivity.class);

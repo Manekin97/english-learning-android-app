@@ -18,8 +18,10 @@ public class QuizService extends Service {
     private final IBinder mBinder = new QuizServiceBinder();
     private Difficulty difficulty;
     private Mode mode;
+    private LanguageMode languageMode;
     private ServerService db;
     private QuestionFactory factory;
+    private QuestionType questionType = QuestionType.CLOSED;
     public HashMap<String, String> words = new HashMap<String, String>();
     private boolean isBound = false;
     private Question question;
@@ -112,6 +114,14 @@ public class QuizService extends Service {
         }
     }
 
+    public void setLanguageMode(LanguageMode languageMode) {
+        this.languageMode = languageMode;
+    }
+
+    public void setQuestionType(QuestionType questionType) {
+        this.questionType = questionType;
+    }
+
     public void getNextQuestion(Callback callback) {
         Question q = factory.getQuestion();
 
@@ -123,13 +133,12 @@ public class QuizService extends Service {
                 q.text = words.get(rndIndex).key;
                 q.correctAnswerIndex = rndIndex;
                 q.answers = words;
-                q.type = QuestionType.CLOSED_QUESTION;
 
                 question = q;
 
                 callback.onQuestionReady(q);
             }
-        });
+        }, this.languageMode);
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -166,8 +175,12 @@ public class QuizService extends Service {
         this.correctAnswersCount = 0;
     }
 
-    public int getDifficulty(){
+    public int getQuestionCount(){
         return this.difficulty.QUESTIONS_COUNT;
+    }
+
+    public Difficulty getDifficulty(){
+        return this.difficulty;
     }
 
     public int getCurrentQuestionIndex(){

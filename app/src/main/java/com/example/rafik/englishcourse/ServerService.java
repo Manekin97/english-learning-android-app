@@ -56,7 +56,7 @@ public class ServerService extends Service {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("DBerror", databaseError.getMessage());
+                Log.e("DBerror", databaseError.getMessage());
             }
         });
     }
@@ -71,7 +71,7 @@ public class ServerService extends Service {
         }
     }
 
-    public void getQuestion(Callback callback) {
+    public void getQuestion(Callback callback, LanguageMode languageMode) {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -87,19 +87,39 @@ public class ServerService extends Service {
                     DataSnapshot child = it.next();
 
                     if (i == indexes[0]){
-                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        if (languageMode == LanguageMode.POLISH_ENGLISH){
+                            words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        }
+                        else{
+                            words.add(new Pair(child.getValue(String.class), child.getKey()));
+                        }
                     }
 
                     if (i == indexes[1]){
-                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        if (languageMode == LanguageMode.POLISH_ENGLISH){
+                            words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        }
+                        else{
+                            words.add(new Pair(child.getValue(String.class), child.getKey()));
+                        }
                     }
 
                     if (i == indexes[2]){
-                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        if (languageMode == LanguageMode.POLISH_ENGLISH){
+                            words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        }
+                        else{
+                            words.add(new Pair(child.getValue(String.class), child.getKey()));
+                        }
                     }
 
                     if (i == indexes[3]){
-                        words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        if (languageMode == LanguageMode.POLISH_ENGLISH){
+                            words.add(new Pair(child.getKey(), child.getValue(String.class)));
+                        }
+                        else{
+                            words.add(new Pair(child.getValue(String.class), child.getKey()));
+                        }
                     }
 
                     i++;
@@ -110,7 +130,7 @@ public class ServerService extends Service {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e("DBError", databaseError.getMessage());
             }
         });
 
@@ -126,7 +146,7 @@ public class ServerService extends Service {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("DBerror", databaseError.getMessage());
+                Log.e("DBerror", databaseError.getMessage());
             }
         });
     }
