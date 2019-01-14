@@ -8,7 +8,7 @@
     <string name="library_btn">SŁOWNIK</string>
     <string name="easy_lvl_btn">Łatwy</string>
     <string name="normal_lvl_btn">NORMALNY</string>
-    <string name="hard_lvl_btn">CIĘŻKI</string>
+    <string name="hard_lvl_btn">TRUDNY</string>
     <string name="expert_lvl_btn">EKSPERT</string>
     <string name="difficulty_lvl">LEVEL OF DIFFICULTY</string>
     <string name="text_question">TextView</string>
@@ -22,4 +22,6 @@
     <string name="change_lng_button">Button</string>
     <string name="pl_eng_btn">Polski -> Angielski</string>
     <string name="eng_pl_btn">Angielski -> Polski</string>
+    <string name="add_word_button">Dodaj</string>
+
 </resources>

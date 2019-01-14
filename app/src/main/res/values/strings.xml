@@ -21,5 +21,10 @@
     <string name="change_lng_button">Button</string>
     <string name="pl_eng_btn">Polish -> English</string>
     <string name="eng_pl_btn">English -> Polish</string>
-    <string name="add_word_button">Dodaj</string>
+    <string name="add_word_button">Add</string>
+    <string name="pol_word">TextView</string>
+    <string name="end_word">TextView</string>
+    <string name="edit_button">Button</string>
+    <string name="delete_word_button">TODO</string>
+    <string name="edit_word_button">TODO</string>
 </resources>

@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -55,8 +54,8 @@ public class DictionaryViewAdapter extends RecyclerView.Adapter<DictionaryViewAd
         public DictionaryViewHolder(View view) {
             super(view);
 
-            key = (TextView) view.findViewById(R.id.textView);
-            value = (TextView) view.findViewById(R.id.textView2);
+            key = (TextView) view.findViewById(R.id.pol_word);
+            value = (TextView) view.findViewById(R.id.eng_word);
             deleteButton = (ImageButton) view.findViewById(R.id.delete_word_button);
             editButton = (ImageButton) view.findViewById(R.id.edit_button);
         }

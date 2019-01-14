@@ -21,12 +21,15 @@
         </activity>
 
         <service android:name=".ServerService" />
+
         <activity android:name=".DifficultySelectionActivity" />
         <activity android:name=".QuestionActivity" />
         <activity android:name=".SummaryActivity" />
-        <service android:name=".QuizService" />
-        <activity android:name=".DictionaryActivity"></activity>
 
+        <service android:name=".QuizService" />
+
+        <activity android:name=".DictionaryActivity" />
+        <activity android:name=".OpenQuestionActivity"></activity>
     </application>
 
 </manifest>
