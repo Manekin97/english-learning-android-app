@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -48,16 +49,16 @@ public class DictionaryViewAdapter extends RecyclerView.Adapter<DictionaryViewAd
 
         TextView key;
         TextView value;
-        Button deleteButton;
-        Button editButton;
+        ImageButton deleteButton;
+        ImageButton editButton;
 
         public DictionaryViewHolder(View view) {
             super(view);
 
             key = (TextView) view.findViewById(R.id.textView);
             value = (TextView) view.findViewById(R.id.textView2);
-            deleteButton = (Button) view.findViewById(R.id.delete_word_button);
-            editButton = (Button) view.findViewById(R.id.edit_button);
+            deleteButton = (ImageButton) view.findViewById(R.id.delete_word_button);
+            editButton = (ImageButton) view.findViewById(R.id.edit_button);
         }
     }
 

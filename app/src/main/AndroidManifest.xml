@@ -26,6 +26,7 @@
         <activity android:name=".SummaryActivity" />
         <service android:name=".QuizService" />
         <activity android:name=".DictionaryActivity"></activity>
+
     </application>
 
 </manifest>

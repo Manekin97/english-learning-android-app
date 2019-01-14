@@ -11,10 +11,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import java.util.HashMap;
 
 public class DictionaryActivity extends AppCompatActivity implements NewWordDialog.NewWordDialogListener, EditWordDialog.EditWordDialogListener {
+    private Button addWordButton;
+
     QuizService quizService;
     boolean mBound = false;
     private RecyclerView mRecyclerView;
@@ -27,9 +30,9 @@ public class DictionaryActivity extends AppCompatActivity implements NewWordDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
 
-        Button btn = (Button) findViewById(R.id.addButton);
+        addWordButton = (Button) findViewById(R.id.addButton);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        addWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDialog();
