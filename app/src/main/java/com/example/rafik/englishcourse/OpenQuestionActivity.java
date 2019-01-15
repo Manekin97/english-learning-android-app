@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -47,6 +48,19 @@ public class OpenQuestionActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
+                    chronometer.stop();
+
+                    Intent intent = new Intent(OpenQuestionActivity.this, SummaryActivity.class);
+
+                    intent.putExtra("accuracy", quizService.getCorrectAnswersPercentageToString());
+                    intent.putExtra("time", chronometer.getText().toString());
+
+                    quizService.onFinish();
+                    stopService(new Intent(OpenQuestionActivity.this, QuizService.class));
+                    startActivity(intent);
+                }
+
                 String answer = answerEditText.getText().toString();
 
                 quizService.onAnswerSelect(answer, new Callback() {
@@ -134,9 +148,15 @@ public class OpenQuestionActivity extends AppCompatActivity {
 
             chronometer.start();
 
+            dialog = ProgressDialog.show(OpenQuestionActivity.this, "",
+                    getString(R.string.loading_message), true);
             quizService.getNextQuestion(new Callback() {
                 @Override
                 void onQuestionReady(Question question) {
+                    if (dialog != null) {
+                        dialog.hide();
+                    }
+
                     setQuestionText(question);
                 }
             });

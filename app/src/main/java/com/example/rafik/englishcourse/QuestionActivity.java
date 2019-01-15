@@ -267,7 +267,6 @@ public class QuestionActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, SummaryActivity.class);
 
-                Log.d("accuracy", quizService.getCorrectAnswersPercentageToString());
                 intent.putExtra("accuracy", quizService.getCorrectAnswersPercentageToString());
                 intent.putExtra("time", this.chronometer.getText().toString());
 
@@ -304,7 +303,7 @@ public class QuestionActivity extends AppCompatActivity {
                     else {
                         questionsProgressTextView.setText(quizService.getQuestionProgressToString());
                         dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
+                                getString(R.string.loading_message), true);
                     }
                 }
 
@@ -327,7 +326,7 @@ public class QuestionActivity extends AppCompatActivity {
                         correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
                         questionsProgressTextView.setText(quizService.getQuestionProgressToString());
                         dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
+                                getString(R.string.loading_message), true);
                     }
                 }
             });
@@ -358,9 +357,15 @@ public class QuestionActivity extends AppCompatActivity {
             isBound = true;
 
             chronometer.start();
+            dialog = ProgressDialog.show(QuestionActivity.this, "",
+                    getString(R.string.loading_message), true);
             quizService.getNextQuestion(new Callback() {
                 @Override
                 void onQuestionReady(Question question) {
+                    if (dialog != null) {
+                        dialog.hide();
+                    }
+
                     setQuestionText(question);
                 }
             });
