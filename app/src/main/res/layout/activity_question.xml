@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/text_question"
-        android:layout_width="368dp"
-        android:layout_height="118dp"
+        android:layout_width="@dimen/width_textView_question"
+        android:layout_height="@dimen/height_textView_question"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -29,8 +29,8 @@
 
     <Button
         android:id="@+id/first_answer"
-        android:layout_width="180dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/width_answer_btn"
+        android:layout_height="@dimen/height_answer_btn"
         android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
@@ -45,8 +45,8 @@
 
     <Button
         android:id="@+id/second_answer"
-        android:layout_width="180dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/width_answer_btn"
+        android:layout_height="@dimen/height_answer_btn"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
@@ -61,8 +61,8 @@
 
     <Button
         android:id="@+id/third_answer"
-        android:layout_width="180dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/width_answer_btn"
+        android:layout_height="@dimen/height_answer_btn"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
@@ -77,8 +77,8 @@
 
     <Button
         android:id="@+id/fourth_answer"
-        android:layout_width="180dp"
-        android:layout_height="121dp"
+        android:layout_width="@dimen/width_answer_btn"
+        android:layout_height="@dimen/height_answer_btn"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
@@ -93,8 +93,8 @@
 
     <Chronometer
         android:id="@+id/chronometer"
-        android:layout_width="80dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/width_small_textView"
+        android:layout_height="@dimen/height_small_textView"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -107,12 +107,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/correct_answers_text_view"
-        android:layout_width="80dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/width_small_textView"
+        android:layout_height="@dimen/height_small_textView"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -127,8 +126,8 @@
 
     <TextView
         android:id="@+id/questions_progress_text_view"
-        android:layout_width="80dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/width_small_textView"
+        android:layout_height="@dimen/height_small_textView"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"

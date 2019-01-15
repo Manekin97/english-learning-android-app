@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="option_width_btn">280dp</dimen>
+    <dimen name="option_difficulty_btn">270dp</dimen>
+    <dimen name="height_language_btn">100dp</dimen>
+    <dimen name="width_language_btn">300dp</dimen>
+    <dimen name="height_textView_question">118dp</dimen>
+    <dimen name="width_textView_question">368dp</dimen>
+    <dimen name="width_small_textView">80dp</dimen>
+    <dimen name="height_small_textView">32dp</dimen>
+    <dimen name="width_answer_btn">180dp</dimen>
+    <dimen name="height_answer_btn">120dp</dimen>
+
+
+</resources>

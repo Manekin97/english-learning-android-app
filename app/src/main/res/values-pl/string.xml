@@ -10,19 +10,20 @@
     <string name="normal_lvl_btn">NORMALNY</string>
     <string name="hard_lvl_btn">TRUDNY</string>
     <string name="expert_lvl_btn">EKSPERT</string>
-    <string name="difficulty_lvl">LEVEL OF DIFFICULTY</string>
+    <string name="difficulty_lvl">POZIOM TRUDNOŚCI</string>
     <string name="text_question">TextView</string>
     <string name="first_answer">Button</string>
     <string name="second_answer">Button</string>
     <string name="third_answer">Button</string>
     <string name="fourth_answer">Button</string>
-    <string name="textview">TextView</string>
+    <string name="text_view_1">Twoje Punkty</string>
     <string name="summary_txt">TextView</string>
-    <string name="text_view_score">TextView</string>
     <string name="change_lng_button">Button</string>
     <string name="pl_eng_btn">Polski -> Angielski</string>
     <string name="eng_pl_btn">Angielski -> Polski</string>
     <string name="add_word_button">Dodaj</string>
     <string name="loading_message">Ładowanie...</string>
     <string name="submit_button">Zatwierdź</string>
+    <string name="text_view">Twoje Punkty</string>
+    <string name="text_view_2">Twój Czas</string>
 </resources>
