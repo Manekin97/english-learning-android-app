@@ -1,5 +1,6 @@
 package com.example.rafik.englishcourse;
 
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ public class DictionaryActivity extends AppCompatActivity implements NewWordDial
     private DictionaryViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Context activityContext = this;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +74,15 @@ public class DictionaryActivity extends AppCompatActivity implements NewWordDial
             quizService = binder.getService();
             mBound = true;
 
+            dialog = ProgressDialog.show(DictionaryActivity.this, "",
+                    getString(R.string.loading_message), true);
             quizService.loadWords(new Callback() {
                 @Override
                 public void onDataReceived() {
+                    if(dialog != null){
+                        dialog.hide();
+                    }
+
                     mAdapter.setData(quizService.getWords());
                 }
             });

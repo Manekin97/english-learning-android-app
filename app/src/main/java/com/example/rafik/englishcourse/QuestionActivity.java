@@ -47,19 +47,7 @@ public class QuestionActivity extends AppCompatActivity {
         this.chronometer = (Chronometer) findViewById(R.id.chronometer);
 
         this.answerAButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
-                this.chronometer.stop();
-
-                Intent intent = new Intent(this, SummaryActivity.class);
-
-                Log.d("accuracy", quizService.getCorrectAnswersPercentageToString());
-                intent.putExtra("accuracy", quizService.getCorrectAnswersPercentageToString());
-                intent.putExtra("time", this.chronometer.getText().toString());
-
-                quizService.onFinish();
-                stopService(new Intent(this, QuizService.class));
-                startActivity(intent);
-            }
+            checkIfAllQuestionsHaveBeenAnswered();
 
             String answer = this.answerAButton.getText().toString();
 
@@ -74,65 +62,21 @@ public class QuestionActivity extends AppCompatActivity {
 
                 @Override
                 void onWrongAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerAButton.getBackground().setTint(Color.RED);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerAButton.getBackground().setTint(defaultButtonColor);
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    } else {
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                getString(R.string.loading_message), true);
-                    }
+                    updateViewOnWrongAnswer(answerAButton);
                 }
 
                 @Override
                 void onCorrectAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerAButton.getBackground().setTint(Color.GREEN);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerAButton.getBackground().setTint(defaultButtonColor);
-                                correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    }
-                    else {
-                        correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                getString(R.string.loading_message), true);
-                    }
+                    updateViewOnCorrectAnswer(answerAButton);
                 }
             });
         });
 
         this.answerBButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
-                this.chronometer.stop();
-
-                Intent intent = new Intent(this, SummaryActivity.class);
-
-                Log.d("accuracy", quizService.getCorrectAnswersPercentageToString());
-                intent.putExtra("accuracy", quizService.getCorrectAnswersPercentageToString());
-                intent.putExtra("time", this.chronometer.getText().toString());
-
-                quizService.onFinish();
-                stopService(new Intent(this, QuizService.class));
-                startActivity(intent);
-            }
+            checkIfAllQuestionsHaveBeenAnswered();
 
             String answer = this.answerBButton.getText().toString();
+
             this.quizService.onAnswerSelect(answer, new Callback() {
                 @Override
                 void onQuestionReady(Question question) {
@@ -145,64 +89,19 @@ public class QuestionActivity extends AppCompatActivity {
 
                 @Override
                 void onWrongAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerBButton.getBackground().setTint(Color.RED);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerBButton.getBackground().setTint(defaultButtonColor);
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    }
-                    else {
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                getString(R.string.loading_message), true);
-                    }
+                    updateViewOnWrongAnswer(answerBButton);
                 }
 
                 @Override
                 void onCorrectAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerBButton.getBackground().setTint(Color.GREEN);
+                    updateViewOnCorrectAnswer(answerBButton);
 
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerBButton.getBackground().setTint(defaultButtonColor);
-                                correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    }
-                    else {
-                        correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                getString(R.string.loading_message), true);
-                    }
                 }
             });
         });
 
         this.answerCButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
-                this.chronometer.stop();
-
-                Intent intent = new Intent(this, SummaryActivity.class);
-
-                Log.d("accuracy", quizService.getCorrectAnswersPercentageToString());
-                intent.putExtra("accuracy", quizService.getCorrectAnswersPercentageToString());
-                intent.putExtra("time", this.chronometer.getText().toString());
-
-                quizService.onFinish();
-                stopService(new Intent(this, QuizService.class));
-                startActivity(intent);
-            }
+            checkIfAllQuestionsHaveBeenAnswered();
 
             String answer = this.answerCButton.getText().toString();
             this.quizService.onAnswerSelect(answer, new Callback() {
@@ -217,63 +116,18 @@ public class QuestionActivity extends AppCompatActivity {
 
                 @Override
                 void onWrongAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerCButton.getBackground().setTint(Color.RED);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerCButton.getBackground().setTint(defaultButtonColor);
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    }
-                    else {
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
-                    }
+                    updateViewOnWrongAnswer(answerCButton);
                 }
 
                 @Override
                 void onCorrectAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerCButton.getBackground().setTint(Color.GREEN);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerCButton.getBackground().setTint(defaultButtonColor);
-                                correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    }
-                    else {
-                        correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                "Loading...", true);
-                    }
+                    updateViewOnCorrectAnswer(answerCButton);
                 }
             });
         });
 
         this.answerDButton.setOnClickListener(v -> {
-            if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
-                this.chronometer.stop();
-
-                Intent intent = new Intent(this, SummaryActivity.class);
-
-                intent.putExtra("accuracy", quizService.getCorrectAnswersPercentageToString());
-                intent.putExtra("time", this.chronometer.getText().toString());
-
-                quizService.onFinish();
-                stopService(new Intent(this, QuizService.class));
-                startActivity(intent);
-            }
+            checkIfAllQuestionsHaveBeenAnswered();
 
             String answer = this.answerDButton.getText().toString();
             this.quizService.onAnswerSelect(answer, new Callback() {
@@ -288,46 +142,12 @@ public class QuestionActivity extends AppCompatActivity {
 
                 @Override
                 void onWrongAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerDButton.getBackground().setTint(Color.RED);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerDButton.getBackground().setTint(defaultButtonColor);
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    }
-                    else {
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                getString(R.string.loading_message), true);
-                    }
+                    updateViewOnWrongAnswer(answerDButton);
                 }
 
                 @Override
                 void onCorrectAnswer() {
-                    if (quizService.getMode() == Mode.TRAINING) {
-                        answerDButton.getBackground().setTint(Color.GREEN);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                answerDButton.getBackground().setTint(defaultButtonColor);
-                                correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                                questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                            }
-                        }, 1500);
-                    }
-                    else {
-                        correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
-                        questionsProgressTextView.setText(quizService.getQuestionProgressToString());
-                        dialog = ProgressDialog.show(QuestionActivity.this, "",
-                                getString(R.string.loading_message), true);
-                    }
+                    updateViewOnCorrectAnswer(answerDButton);
                 }
             });
         });
@@ -393,5 +213,61 @@ public class QuestionActivity extends AppCompatActivity {
         answerBButton.setText(question.answers.get(1).value);
         answerCButton.setText(question.answers.get(2).value);
         answerDButton.setText(question.answers.get(3).value);
+    }
+
+    public void updateViewOnWrongAnswer(Button button){
+        if (quizService.getMode() == Mode.TRAINING) {
+            button.getBackground().setTint(Color.RED);
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    button.getBackground().setTint(defaultButtonColor);
+                    questionsProgressTextView.setText(quizService.getQuestionProgressToString());
+                }
+            }, 1500);
+        } else {
+            questionsProgressTextView.setText(quizService.getQuestionProgressToString());
+            dialog = ProgressDialog.show(QuestionActivity.this, "",
+                    getString(R.string.loading_message), true);
+        }
+    }
+
+    public void updateViewOnCorrectAnswer(Button button){
+        if (quizService.getMode() == Mode.TRAINING) {
+            button.getBackground().setTint(Color.GREEN);
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    button.getBackground().setTint(defaultButtonColor);
+                    correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
+                    questionsProgressTextView.setText(quizService.getQuestionProgressToString());
+                }
+            }, 1500);
+        }
+        else {
+            correctAnswersTextView.setText(quizService.getCorrectAnswersPercentageToString());
+            questionsProgressTextView.setText(quizService.getQuestionProgressToString());
+            dialog = ProgressDialog.show(QuestionActivity.this, "",
+                    getString(R.string.loading_message), true);
+        }
+    }
+
+    public void checkIfAllQuestionsHaveBeenAnswered(){
+        if (quizService.getCurrentQuestionIndex() + 1 > quizService.getQuestionCount()) {
+            this.chronometer.stop();
+
+            Intent intent = new Intent(this, SummaryActivity.class);
+
+            intent.putExtra("accuracy", quizService.getCorrectAnswersPercentageToString());
+            intent.putExtra("time", this.chronometer.getText().toString());
+
+            quizService.onFinish();
+            stopService(new Intent(this, QuizService.class));
+            startActivity(intent);
+        }
     }
 }
