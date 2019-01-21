@@ -24,7 +24,6 @@ public class DictionaryActivity extends AppCompatActivity implements NewWordDial
     private RecyclerView mRecyclerView;
     private DictionaryViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Context activityContext = this;
     private ProgressDialog dialog;
 
     @Override

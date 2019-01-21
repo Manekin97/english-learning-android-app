@@ -18,7 +18,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     QuizService quizService;
     boolean isBound = false;
-    final HashMap<String, String> dupa = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

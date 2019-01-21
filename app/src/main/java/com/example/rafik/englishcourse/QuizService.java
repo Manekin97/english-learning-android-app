@@ -57,7 +57,7 @@ public class QuizService extends Service {
 
         db.getWords(new Callback() {
             @Override
-            public void callback(HashMap<String, String> data) {
+            public void onWordsReceived(HashMap<String, String> data) {
                 if (words == null) {
                     words = new HashMap<String, String>();
                 }

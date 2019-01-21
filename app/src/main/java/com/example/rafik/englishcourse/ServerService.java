@@ -41,17 +41,13 @@ public class ServerService extends Service {
         myRef = database.getReference("/Words");
     }
 
-    public void updateQuestion(String key, String value){
-        myRef.child(key).setValue(value);
-    }
-
     public void getWords(Callback callback){
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 HashMap<String, String> data = (HashMap<String, String>) dataSnapshot.getValue();
-                callback.callback(data);
+                callback.onWordsReceived(data);
             }
 
             @Override

@@ -10,6 +10,6 @@
     <dimen name="height_small_textView">32dp</dimen>
     <dimen name="width_answer_btn">180dp</dimen>
     <dimen name="height_answer_btn">120dp</dimen>
-
+    <dimen name="button_maring_top">8dp</dimen>
 
 </resources>

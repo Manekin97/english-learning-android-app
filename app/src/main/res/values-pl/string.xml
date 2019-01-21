@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">EnglishCourse</string>
     <string name="test_btn">TEST</string>
-    <string name="hello">Witaj!</string>
     <string name="quiz_btn">Quiz</string>
     <string name="training_btn">TRENING</string>
     <string name="library_btn">SŁOWNIK</string>
@@ -24,6 +23,6 @@
     <string name="add_word_button">Dodaj</string>
     <string name="loading_message">Ładowanie...</string>
     <string name="submit_button">Zatwierdź</string>
-    <string name="text_view">Twoje Punkty</string>
-    <string name="text_view_2">Twój Czas</string>
+    <string name="text_view">Twój wynik</string>
+    <string name="text_view_2">Twój czas</string>
 </resources>

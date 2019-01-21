@@ -61,10 +61,6 @@ public class DictionaryViewAdapter extends RecyclerView.Adapter<DictionaryViewAd
         }
     }
 
-    public DictionaryViewAdapter(HashMap<String, String> words) {
-        this.words = words;
-    }
-
     @Override
     public DictionaryViewAdapter.DictionaryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dict_view_item, parent, false);
